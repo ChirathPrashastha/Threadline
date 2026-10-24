@@ -1,0 +1,404 @@
+body {
+    margin: 0px;
+    padding: 25px 20px 25px 30px;
+    background-color: #F0ECFF;
+    font-family: 'Bricolage Grotesque';
+    color: #1B1740;
+}
+
+#table-main {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0px;
+}
+
+#threadline-logo {
+    background-color: #CBF542;
+    font-family: 'Bricolage Grotesque';
+    font-weight: 800;
+    font-size: 20px;
+    color: #1B1740;
+    display: inline;
+    border: 2px #1B1740 solid;
+    border-radius: 99px;
+    padding: 8px 25px 8px 25px;
+    box-shadow: 3px 3px 0px #1B1740;
+}
+
+#search-td {
+    padding: 0px 0px 0px 15px;
+}
+
+#txtSearchAuthors {
+    border: 2px #1B1740 solid;
+    border-radius: 99px;
+    height: 30px;
+    width: 410px;
+    padding: 5px 20px 5px 20px;
+    font-family: 'Bricolage Grotesque';
+    font-weight: 400;
+    font-size: 14px;
+    color: #1B1740;
+}
+
+.avatar {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+#user-avatar {
+    width: 40px;
+    height: 40px;
+    font-family: 'Bricolage Grotesque';
+    font-size: 15px;
+    font-weight: 800;
+    background-color: #9CC4FF;
+    border: 2px #1B1740 solid;
+}
+
+#avatar-td {
+    padding: 0px 0px 0px 593px;
+}
+
+#username-td {
+    padding-left: 10px;
+    font-family: 'Bricolage Grotesque';
+    font-size: 15px;
+    font-weight: 600;
+}
+
+#logout-td {
+    padding-left: 10px;
+}
+
+.btn {
+    border: 2px #1B1740 solid;
+    border-radius: 99px;
+    font-family: 'Bricolage Grotesque';
+    font-weight: 700;
+    font-size: 14px;
+    color: #1B1740;
+    background-color: #FFFFFF;
+    box-shadow: 2px 2px 0px #1B1740;
+    padding: 6px 14px 6px 14px;
+    margin: 0px 6px 0px 0px;
+}
+
+#btn-logout {
+    width: 100px;
+    height: 40px;
+}
+
+.card-box {
+    border: 2px #1B1740 solid;
+    border-radius: 30px;
+    font-family: 'Bricolage Grotesque';
+    font-weight: 700;
+    font-size: 14px;
+    color: #1B1740;
+    background-color: #FFFFFF;
+    box-shadow: 5px 5px 0px #1B1740;
+    padding: 10px 10px 10px 10px;
+
+}
+
+#user-box {
+    width: 230px;
+    height: 160px;
+}
+
+#UserAvaterBig {
+    width: 60px;
+    height: 60px;
+    font-family: 'Bricolage Grotesque';
+    font-size: 20px;
+    font-weight: 500;
+    background-color: #FF8FB8;
+    border: 2px #1B1740 solid;
+}
+
+#box-username-td {
+    padding-top: 10px;
+    padding-left: 10px;
+    font-size: 17px;
+    font-weight: 900;
+}
+
+#box-time-td {
+    padding-left: 20px;
+    padding-top: 10px;
+    font-size: 15px;
+    color: #999999;
+    font-weight: 400;
+}
+
+#bigavatar-td {
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+#second-row {
+    padding-top: 20px;
+}
+
+#thread-box {
+    background-color: #CBF542;
+    font-family: 'Bricolage Grotesque';
+    border: 2px #1B1740 solid;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #1B1740;
+    box-shadow: 5px 5px 0px #1B1740;
+    width: 800px;
+    height: 195px;
+    padding: 20px;
+}
+
+#thread-td {
+    padding-left: 30px;
+}
+
+#qtitle-td {
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.txtQuestion {
+    border: 2px #1B1740 solid;
+    border-radius: 13px;
+    height: 30px;
+    width: 750px;
+    padding: 5px 20px 5px 20px;
+    font-family: 'Bricolage Grotesque';
+    font-weight: 400;
+    font-size: 14px;
+    color: #1B1740;
+}
+
+#btn-post-thread {
+    background-color: #6C4DFF;
+    color: white;
+    height: 40px;
+    width: 116px;
+    padding: 10px;
+}
+
+#quiz-td {
+    padding-top: 10px;
+}
+
+#post-td {
+    padding-top: 10px;
+}
+
+#helpers-box {
+    width: 260px;
+    height: 205px;
+    padding: 20px;
+}
+
+#helper-title-td {
+    font-size: 18px;
+    font-weight: 900;
+    padding-left: 25px;
+    padding-bottom: 15px;
+}
+
+.helper-avatar {
+    width: 40px;
+    height: 40px;
+    font-family: 'Bricolage Grotesque';
+    font-size: 16px;
+    font-weight: 800;
+    background-color: #9CC4FF;
+    border: 2px #1B1740 solid;
+
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+    color: #FFFFFF;
+}
+
+#helper1 {
+    background-color: #1B1740;
+}
+
+#helper2 {
+    background-color: #FF8FB8;
+}
+
+#helper3 {
+    background-color: #9CC4FF;
+}
+
+.helper-td {
+    padding-left: 15px;
+    padding-bottom: 13px;
+}
+
+.helper-row {
+    padding-bottom: 10px;
+}
+
+#help-td {
+    padding-left: 40px;
+}
+
+#menu-box {
+    width: 230px;
+    height: 160px;
+    padding: 10px;
+}
+
+.btn-menu {
+    border: 0px #1B1740 solid;
+    border-radius: 15px;
+    font-family: 'Bricolage Grotesque';
+    font-weight: 700;
+    font-size: 14px;
+    color: white;
+    background-color: #6C4DFF;
+    padding: 6px 14px 6px 14px;
+    margin: 0px 6px 0px 0px;
+    width: 220px;
+    height: 45px;
+}
+
+.menu-td{
+    padding-bottom: 5px;
+}
+
+.btn-filters{
+    border: 0px #1B1740 solid;
+    border-radius: 30px;
+    font-size: 14px;
+    font-family: 'Bricolage Grotesque';
+    font-weight: 700;
+    
+    color: white;
+    background-color: #1B1740;
+    padding: 6px 14px 6px 14px;
+    margin: 0px 6px 0px 0px;
+    width: 130px;
+    height: 35px;
+}
+
+#filter-td{
+    padding-left: 25px;
+    vertical-align: top;
+}
+
+.thread-list{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 20px;
+}
+
+.card {
+    
+    height: 200px;
+    width: 800px;
+}
+
+#menu-box-td{
+    vertical-align: top;
+}
+
+.thread{
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.thread-card{
+    background-color: #FFFFFF;
+    height: 100%;
+    width: 100%;
+    border: 2px solid #1B1740;
+    border-radius: 20px;
+    box-shadow: 5px 5px 0px #1B1740;
+}
+
+.thread-avatar{
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+    font-family: 'Bricolage Grotesque';
+    
+    font-weight: 800;
+    background-color: #9CC4FF;
+    border: 2px #1B1740 solid;
+
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+}
+
+.thread-username{
+    font-size: 14px;
+    font-weight: 700;
+    width: 130px;
+}
+
+.thread-time{
+    font-size: 13px;
+    color: #999999;
+    width: 90px;
+}
+
+.thread-status{
+    width: 110px;
+    height: 30px;
+    background-color: #CBF542;
+    font-family: 'Bricolage Grotesque';
+    font-weight: 650;
+    font-size: 13px;
+    color: #1B1740;
+    display: grid;
+    place-items: center;
+    border: 2px #1B1740 solid;
+    border-radius: 99px;
+}
+
+.thread-question{
+    font-size: 25px;
+    font-weight: 900;
+    padding-top: 14px;
+}
+
+.thread-content{
+    color: #7b7b7b;
+    font-weight: 250;
+    font-size: 16px;
+    padding-top: 10px;
+}
+
+.thread-btn{
+    border-radius: 30px;
+    border: 2px #1B1740 solid;
+    background-color: #FFFFFF;
+    height: 33px;
+    width: 60px;
+    font-size: 17px;
+    text-align: center;
+}
+
+.thread-btn-td{
+    padding-top: 15px;
+}
+
+.thread-avatar-td{
+    width: 60px;
+}
+
+#comment-btn-td{
+    padding-left: 15px;
+}
