@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +14,8 @@
         rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="assets/CSS/index.css">
+
+    <script src="validate-index.js"></script>
 </head>
 
 <body>
@@ -28,7 +34,7 @@
                         the class</h2>
                 </td>
                 <td rowspan="2" id="form-line">
-                    <form action="check-credentials.php" method="post">
+                    <form name="index-form" action="check-credentials.php" method="post" onsubmit="return validate()">
                         <div class="login-container">
                             <table id="table-form">
                                 <tr>
@@ -51,13 +57,11 @@
                                             placeholder="Your_password" class="input-field"></td>
                                 </tr>
                                 <tr>
-                                    <td align="center" class="error-line">
+                                    <td align="center" id="error-index" class="error-line">
                                         <?php
-                                            $error = $_GET["error"] ?? "";
-                                            if ($error == "empty") {
-                                                echo "Please enter the fields";
-                                            }else if ($error == "invalid") {
-                                                echo "Invalid username or password!";
+                                            if(isset($_SESSION["ERROR"]) && $_SESSION["ERROR"] == "invalid"){
+                                                echo "Invalid username or password";
+                                                unset($_SESSION["ERROR"]);
                                             }
                                         ?>
                                     </td>
@@ -67,7 +71,7 @@
                                             id="btn-signIn"></td>
                                 </tr>
                                 <tr>
-                                    <td id="link-line">New here? <a href="/sign-in-page.html">Create an account</a></td>
+                                    <td id="link-line">New here? <a href="sign-in-page.php">Create an account</a></td>
                                 </tr>
                                 <tr>
                                     <td id="admin-line">Admins sign in here too.</td>

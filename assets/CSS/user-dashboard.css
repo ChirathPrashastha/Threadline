@@ -62,7 +62,7 @@ body {
 }
 
 #avatar-td {
-    padding: 0px 0px 0px 593px;
+    padding: 0px 0px 0px 1080px;
 }
 
 #username-td {
@@ -91,7 +91,8 @@ body {
 
 #btn-logout {
     width: 100px;
-    height: 40px;
+    height: 45px;
+    text-decoration: none;
 }
 
 .card-box {
@@ -291,7 +292,7 @@ body {
 }
 
 #filter-td{
-    padding-left: 25px;
+    padding-left: 278px;
     vertical-align: top;
 }
 

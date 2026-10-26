@@ -9,7 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@200..800&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="/assets/CSS/index.css">
+    <link rel="stylesheet" type="text/css" href="assets/CSS/index.css">
+
+    <script src="registration-validate.js"></script>
 </head>
 
 <body>
@@ -28,11 +30,17 @@
                         the class</h2>
                 </td>
                 <td rowspan="2" id="form-line">
-                    <form action="">
+                    <form name="registration-from" method="POST" action="register-user.php" onsubmit="return validate()">
                         <div class="login-container" id="signin-container">
                             <table id="table-form">
                                 <tr>
                                     <td id="form-title-td"><h3 id="form-title">Join the forum</h3></td>
+                                </tr>
+                                <tr>
+                                    <td class="field-name">Full name</td>
+                                </tr>
+                                <tr>
+                                    <td class="input-field-td"><input type="text" name="txt-name" placeholder="your_name" class="input-field"></td>
                                 </tr>
                                 <tr>
                                     <td class="field-name">Username</td>
@@ -52,12 +60,8 @@
                                 <tr>
                                     <td class="input-field-td"><input type="password" name="txt-password" placeholder="create_password" class="input-field"></td>
                                 </tr>
-                                <tr>
-                                    <td class="field-name">Confirm Password</td>
-                                </tr>
-                                <tr>
-                                    <td class="input-field-td"><input type="text" name="txt-confirm-password" placeholder="confirm_password" class="input-field"></td>
-                                </tr>
+                                
+                                
                                 <tr>
                                     <td align="center" class="error-line" id="signin-error"></td>
                                 </tr>

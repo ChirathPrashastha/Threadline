@@ -2,33 +2,27 @@
 
 include("db/connection.php");
 
-session_start();
-
 $username = $_POST["txt-username"];
 $password = $_POST["txt-password"];
 
+session_start();
 
+$sql = "SELECT * FROM users WHERE username='$username'";
 
-if ($username == "" || $password == "") {
-    header("Location: index.php?error=empty");
-    exit();
-} else {
-    $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+$result = $con->query($sql);
 
-    $result = $con->query($sql);
+$count = $result->num_rows;
 
-    $count = $result->num_rows;
+if ($count > 0) {
 
-    if ($count > 0) {
+    $row = $result->fetch_assoc();
 
-        $row = $result->fetch_assoc();
+    $name = $row["full_name"];
+    $role = $row["role"];
+    $id = $row["user_id"];
+    $hashedPassword = $row["password"];
 
-        $name = $row["full_name"];
-        $role = $row["role"];
-        $id = $row["user_id"];
-
-        session_regenerate_id(true); // avoids the session fixation attacks
-
+    if (password_verify($password, $hashedPassword)) {
         if ($role == "ADMIN") {
             $_SESSION["USERNAME"] = $username;
             $_SESSION["NAME"] = $name;
@@ -43,11 +37,17 @@ if ($username == "" || $password == "") {
 
             exit();
         }
-
     } else {
-        header("Location: index.php?error=invalid");
+        $_SESSION["ERROR"] = "invalid";
+        header("Location: index.php");
         exit();
     }
+
+} else {
+    $_SESSION["ERROR"] = "invalid";
+    header("Location: index.php");
+    exit();
 }
+
 
 ?>

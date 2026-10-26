@@ -2,17 +2,16 @@
 
 session_start();
 
-$messages = [
-    "reported" => "Reported successfully. An admin will review it.",
-    "failed"   => "Something went wrong. Please try again."
-];
-$msg = $messages[$_GET["msg"] ?? ""] ?? "";
+if(!isset($_SESSION["USERNAME"])){
+    header("Location: index.php");
+    exit();
+}
 
 $loggedUser = $_SESSION["USERNAME"];
 $loggedUserName = $_SESSION["NAME"];
 
 include("db/connection.php");
-$select = "SELECT * FROM threads WHERE status != 'REMOVED';";
+$select = "SELECT * FROM threads WHERE status != 'REMOVED' ORDER BY thread_id DESC;";
 
 $result = $con->query($select);
 
@@ -54,6 +53,8 @@ $rstTopUsers = $con->query($topUsersSql);
         rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="assets/CSS/user-dashboard.css">
+
+    <script src="validate-thread-posting.js"></script>
 </head>
 
 <body>
@@ -71,7 +72,7 @@ $rstTopUsers = $con->query($topUsersSql);
                             </td>
 
                             <td id="search-td">
-                                <input type="text" placeholder="Search threads or authors" id="txtSearchAuthors">
+                                
                             </td>
 
                             <td id="avatar-td">
@@ -88,7 +89,9 @@ $rstTopUsers = $con->query($topUsersSql);
                                 ?>
                             </td>
 
-                            <td id="logout-td"><button class="btn" id="btn-logout">Log out</button></td>
+                            <td id="logout-td">
+                                <a href="logout.php" class="btn" id="btn-logout">Log out</a>
+                            </td>
                         </tr>
                     </table>
                 </td>
@@ -130,7 +133,7 @@ $rstTopUsers = $con->query($topUsersSql);
 
                             <td id="thread-td">
                                 <div id="thread-box">
-                                    <form method="post" action="thread.php">
+                                    <form name="form-thread" method="post" action="thread.php" onsubmit="return validate()">
                                         <table>
                                             <tr>
                                                 <td id="qtitle-td" colspan="2">What are you stuck on?</td>
@@ -146,14 +149,7 @@ $rstTopUsers = $con->query($topUsersSql);
                                             </tr>
                                             <tr>
                                                 <td id="error-td">
-                                                    <?php
-                                                    $error = $_GET["error"] ?? "";
-                                                    if ($error == "empty") {
-                                                        echo "Please enter the fields!";
-                                                    } else if ($error == "failed") {
-                                                        echo "Failed to post the thread!";
-                                                    }
-                                                    ?>
+                                                    
                                                 </td>
                                                 <td align="right" id="post-td">
                                                     <button class="btn" id="btn-post-thread" type="submit">Post
@@ -207,18 +203,7 @@ $rstTopUsers = $con->query($topUsersSql);
                     <table>
                         <tr>
                             <td id="menu-box-td">
-                                <div id="menu-box" class="card-box">
-                                    <table>
-                                        <tr>
-                                            <td class="menu-td"><button class="btn-menu" id="btn-all-threads">All
-                                                    threads</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="menu-td"><button class="btn-menu" id="btn-my-threads">My
-                                                    threads</button></td>
-                                        </tr>
-                                    </table>
-                                </div>
+                                
                             </td>
 
                             <td id="filter-td">
@@ -406,28 +391,6 @@ $rstTopUsers = $con->query($topUsersSql);
             });
         });
     </script>
-
-    <?php if ($msg != "") { ?>
-        <dialog id="msg-dialog">
-            <p>
-                <?php echo $msg; ?>
-            </p>
-            <button type="button" id="msg-ok" class="dialog-send">OK</button>
-        </dialog>
-
-        <script>
-            var msgDialog = document.getElementById("msg-dialog");
-            msgDialog.showModal();
-
-            document.getElementById("msg-ok").addEventListener("click", function () {
-                msgDialog.close();
-            });
-
-            setTimeout(function () { msgDialog.close(); }, 3000);
-
-            history.replaceState(null, "", "user-dashboard.php");
-        </script>
-    <?php } ?>
 </body>
 
 </html>
