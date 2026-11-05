@@ -14,6 +14,15 @@ $loggedUserId = $_SESSION["USERID"];
 include("db/connection.php");
 $select = "SELECT * FROM threads WHERE status != 'REMOVED' ORDER BY thread_id DESC;";
 
+$view = $_GET["view"] ?? "all";
+if ($view != "mine") {
+    $view = "all";
+}
+
+if ($view == "mine") {
+    $select = "SELECT * FROM threads WHERE status != 'REMOVED' AND user_id = " . (int) $loggedUserId . " ORDER BY thread_id DESC;";
+}
+
 $result = $con->query($select);
 
 $topUsersSql = "SELECT 
@@ -214,8 +223,18 @@ $rstTopUsers = $con->query($topUsersSql);
                                         <td>
                                             <table>
                                                 <tr>
-                                                    <td><button class="btn-filters">All</button></td>
-                                                    <td><button class="btn-filters">My threads</button></td>
+                                                    <td>
+                                                        <form method="get" action="user-dashboard.php">
+                                                            <button type="submit" name="view" value="all"
+                                                                class="btn-filters <?php if ($view == "all") { echo "active"; } ?>">All</button>
+                                                        </form>
+                                                    </td>
+                                                    <td>
+                                                        <form method="get" action="user-dashboard.php">
+                                                            <button type="submit" name="view" value="mine"
+                                                                class="btn-filters <?php if ($view == "mine") { echo "active"; } ?>">My threads</button>
+                                                        </form>
+                                                    </td>
                                                 </tr>
                                             </table>
                                         </td>
@@ -261,7 +280,15 @@ $rstTopUsers = $con->query($topUsersSql);
                                                                         <td>
                                                                             <div class="thread-status">
                                                                                 <?php
-                                                                                echo $row["status"];
+                                                                                $activeStatus = mysqli_query($con,"SELECT * FROM comments WHERE thread_id = '$threadId'; ");
+                                                                                $isSolved = $activeStatus->num_rows;
+
+                                                                                if ($isSolved > 0) {
+                                                                                    echo "Talking";
+                                                                                }else{
+                                                                                    echo "Silent";
+                                                                                }
+                                                                                
                                                                                 ?>
                                                                             </div>
                                                                         </td>

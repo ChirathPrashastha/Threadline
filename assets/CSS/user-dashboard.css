@@ -289,6 +289,12 @@ body {
     margin: 0px 6px 0px 0px;
     width: 130px;
     height: 35px;
+    cursor: pointer;
+    opacity: 60%;
+}
+
+.btn-filters.active{
+    opacity: 90%;
 }
 
 #filter-td{
