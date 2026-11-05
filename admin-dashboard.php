@@ -135,7 +135,7 @@
                             <td class="top-cell">
                                 <a href="logout.php" class="btn" id="btn-logout">Log out</a>
                             </td>
-                        </tr>
+                                </tr>
                     </table>
                 </td>
             </tr>

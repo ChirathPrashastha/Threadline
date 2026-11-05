@@ -69,7 +69,7 @@
                                     <td align="center" id="btn-row"><input type="submit" value="Sign in" id="btn-signIn"></td>
                                 </tr>
                                 <tr>
-                                    <td id="link-line">Already a member? <a href="/index.html">Log in</a></td>
+                                    <td id="link-line">Already a member? <a href="index.php">Log in</a></td>
                                 </tr>
                             </table>
                         </div>

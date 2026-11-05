@@ -6,13 +6,13 @@ function validate(){
 
     
     if(username==="" || email==="" || password==="" || name===""){
-       document.getElementById("signin-error").textContent="Please fill all the fields";
+        document.getElementById("signin-error").textContent="Please fill all the fields";
         return false;
     }
 
     if(!isNaN(name)){
         document.getElementById("signin-error").textContent="Please enter the correct name";
-        return false;
+        return false
     }
 
     if (!email.includes("@") || !email.includes(".")) {

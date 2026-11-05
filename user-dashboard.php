@@ -9,6 +9,7 @@ if(!isset($_SESSION["USERNAME"])){
 
 $loggedUser = $_SESSION["USERNAME"];
 $loggedUserName = $_SESSION["NAME"];
+$loggedUserId = $_SESSION["USERID"];
 
 include("db/connection.php");
 $select = "SELECT * FROM threads WHERE status != 'REMOVED' ORDER BY thread_id DESC;";
@@ -19,6 +20,7 @@ $topUsersSql = "SELECT
     u.user_id,
     u.full_name,
     u.username,
+    t.thread_id,
     COUNT(t.thread_id) AS thread_count
 FROM 
     users u
@@ -72,7 +74,7 @@ $rstTopUsers = $con->query($topUsersSql);
                             </td>
 
                             <td id="search-td">
-                                
+                                <input type="text" id="txtSearchAuthors" placeholder="Search threads">
                             </td>
 
                             <td id="avatar-td">
@@ -212,8 +214,8 @@ $rstTopUsers = $con->query($topUsersSql);
                                         <td>
                                             <table>
                                                 <tr>
-                                                    <td><button class="btn-filters">Solved</button></td>
-                                                    <td><button class="btn-filters">Active</button></td>
+                                                    <td><button class="btn-filters">All</button></td>
+                                                    <td><button class="btn-filters">My threads</button></td>
                                                 </tr>
                                             </table>
                                         </td>
@@ -223,14 +225,20 @@ $rstTopUsers = $con->query($topUsersSql);
                                         <td>
                                             <table class="thread-list">
                                                 <?php while ($row = $result->fetch_assoc()) { ?>
+                                                    <?php
+                                                    $searchUserRst = $con->query("SELECT full_name, username FROM users WHERE user_id = " . (int) $row["user_id"]);
+                                                    $searchUser = $searchUserRst->fetch_assoc();
+                                                    ?>
                                                     <tr>
-                                                        <td class="card">
+                                                        <td class="card"
+                                                            data-search="<?php echo htmlspecialchars(strtolower($row["title"] . " " . $row["content"] . " " . $searchUser["username"] . " " . $searchUser["full_name"])); ?>">
                                                             <div class="thread-card">
                                                                 <table class="thread">
                                                                     <tr>
                                                                         <td class="thread-avatar-td">
                                                                             <div class="thread-avatar">
                                                                                 <?php
+                                                                                $threadId = $row["thread_id"];
                                                                                 $id = $row["user_id"];
                                                                                 $sqlName = "SELECT * FROM users WHERE user_id = $id";
                                                                                 $rstUser = $con->query($sqlName);
@@ -273,8 +281,25 @@ $rstTopUsers = $con->query($topUsersSql);
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td class="thread-btn-td"><button id="thread-like"
-                                                                                class="thread-btn">👍</button></td>
+                                                                        <td class="thread-btn-td" id="like-btn-td">
+                                                                            <form action="like.php" method="POST">
+                                                                                <?php
+                                                                                    $likes = $con->query("SELECT COUNT(like_id) AS count FROM likes WHERE thread_id = $threadId;");
+                                                                                    $likeResults = $likes->fetch_assoc();
+                                                                                    $likeCount = $likeResults["count"];
+
+
+                                                                                    $userLiked = $con->query("SELECT * FROM likes WHERE thread_id = '$threadId' AND user_id = '$loggedUserId';");
+                                                                                    $userLikedResult = $userLiked->num_rows;
+                                                                                ?>
+
+                                                                                <input type="hidden" value="<?php echo $threadId?>" name="thread-id">
+                                                                                <input type="submit" id="thread-like" value="<?php if($likeCount>0){ echo $likeCount;} ?> 👍" class="thread-btn like-toggle" <?php if ($userLikedResult > 0) {
+                                                                                     echo 'disabled';
+                                                                                 } ?>>
+                                                                            </form>
+                                                                            
+                                                                        </td>
                                                                         <td class="thread-btn-td" id="comment-btn-td">
                                                                             <button type="button" id="thread-comment"
                                                                                 class="thread-btn comment-toggle">💭</button>
@@ -388,6 +413,16 @@ $rstTopUsers = $con->query($topUsersSql);
         document.querySelectorAll(".comment-toggle").forEach(function (btn) {
             btn.addEventListener("click", function () {
                 btn.closest(".card").classList.toggle("open");
+            });
+        });
+
+        var searchThreads = document.getElementById("txtSearchAuthors");
+        searchThreads.addEventListener("input", function () {
+            var text = searchThreads.value.toLowerCase();
+            var cards = document.querySelectorAll(".thread-list .card");
+            cards.forEach(function (card) {
+                var show = card.getAttribute("data-search").includes(text);
+                card.parentElement.style.display = show ? "" : "none";
             });
         });
     </script>

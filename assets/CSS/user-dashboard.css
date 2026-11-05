@@ -62,7 +62,7 @@ body {
 }
 
 #avatar-td {
-    padding: 0px 0px 0px 1080px;
+    padding: 0px 0px 0px 630px;
 }
 
 #username-td {
@@ -110,7 +110,7 @@ body {
 
 #user-box {
     width: 230px;
-    height: 160px;
+    height: 210px;
 }
 
 #UserAvaterBig {
@@ -392,6 +392,19 @@ body {
     text-align: center;
 }
 
+#comment-btn-td{
+    padding-left: 10px;
+}
+
+.thread-btn:disabled {
+    background-color: #6C4DFF;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 700;
+    opacity: 1;
+    cursor: not-allowed;
+}
+
 .thread-btn-td{
     padding-top: 15px;
 }
@@ -400,9 +413,7 @@ body {
     width: 60px;
 }
 
-#comment-btn-td{
-    padding-left: 15px;
-}
+
 
 #error-td{
     text-align: center;
